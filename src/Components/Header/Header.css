@@ -1,0 +1,28 @@
+.weather-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  padding-top: 5rem;
+}
+
+.city-toggle {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  font-weight: 100;
+  font-size: 150%;
+}
+
+.city-toggle:hover {
+  cursor: pointer;
+}
+
+.selected-city {
+  color: #5fb0e8;
+  font-size: 150%;
+  font-weight: 700;
+  font-family:'Courier New', Courier, monospace ;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+
+}
