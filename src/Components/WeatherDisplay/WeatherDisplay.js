@@ -13,11 +13,6 @@ const cities = [
   { name: 'Greenwood', lat: 44.9717, lng: -64.9341 }
 ]
 
-const testWeatherData = {
-  temp: '19', conditions: 'sunny', 
-}
-
-
 class WeatherDisplay extends React.Component {
   constructor() {
     super()
@@ -41,7 +36,7 @@ class WeatherDisplay extends React.Component {
       this.setState({ selectedCity: citySelected })
     }
 
-    const createTodaysWeather = currentWeatherData => (
+    const createTodaysWeather = () => (
       <div className='todays-weather'>
         Today
         <div className='weather-display-continer'>
@@ -59,7 +54,7 @@ class WeatherDisplay extends React.Component {
     return (
       <div className='weather-display'>
         <Header locations={cities} handleCityToggle={handleCityToggle}/>
-        {createTodaysWeather(testWeatherData)}
+        {createTodaysWeather()}
       </div>
     )
   }
