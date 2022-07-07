@@ -19,13 +19,16 @@ class WeatherDisplay extends React.Component {
     super()
     this.state = {
       selectedCity: cities[0],
-      currentWeather: {}
+      currentWeather: {},
+      forecastData: []
     }
   }
 
   componentDidMount() {
     const setCurrentWeather = weatherData => this.setState({ currentWeather: weatherData })
+    const setForecastData = weatherData => this.setState({ forecastData: weatherData })
     getWeatherData(this.state.selectedCity, setCurrentWeather)
+    get4DayForcast(this.state.selectedCity, setForecastData)
   }
 
   render() {
@@ -54,6 +57,9 @@ class WeatherDisplay extends React.Component {
     const getForecastData = daysInFuture => (
       <div className='flex-container-column'>
         <div> {getDayOfWeek(daysInFuture)} </div>
+        <div>
+          {this.state.forecastData.length && <img src={`http://openweathermap.org/img/w/${this.state.forecastData[daysInFuture -1].weather[0].icon}.png`} />} </div>
+        <div> {this.state.forecastData.length && this.state.forecastData[daysInFuture - 1].main.temp.toFixed()} &deg; </div>
       </div>
     )
 
@@ -65,6 +71,8 @@ class WeatherDisplay extends React.Component {
         {getForecastData(4)}
       </div>
     )
+
+    console.log('this state', this.state)
 
     return (
       <div className='weather-display'>
