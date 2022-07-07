@@ -1,12 +1,15 @@
 import React from 'react'
 import './WeatherDisplay.css'
+import { getWeatherData } from '../../Utils/fetchWeatherData'
 
 import Header from '../Header'
 
+
+
 const cities = [
-  { name: 'Winnipeg', lat: 1234, lng: 1234 },
-  { name: `Halifax`, lat: 3333, lng: 3342 },
-  { name: 'Greenwood', lat: 3342, lng: 435345 }
+  { name: 'Winnipeg', lat: 49.8954, lng: -97.1385 },
+  { name: `Halifax`, lat: 44.6476, lng: -63.5728 },
+  { name: 'Greenwood', lat: 44.9717, lng: -64.9341 }
 ]
 
 const testWeatherData = {
@@ -22,7 +25,7 @@ class WeatherDisplay extends React.Component {
   }
 
   componentDidMount() {
-    
+    getWeatherData(this.state.selectedCity)
   }
 
   render() {
