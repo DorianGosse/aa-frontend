@@ -24,7 +24,6 @@ class WeatherDisplay extends React.Component {
 
   componentDidMount() {
     const setCurrentWeather = weatherData => this.setState({ currentWeather: weatherData })
-    
     getWeatherData(this.state.selectedCity, setCurrentWeather)
   }
 
@@ -41,7 +40,7 @@ class WeatherDisplay extends React.Component {
         Today
         <div className='weather-display-continer'>
           <div className='weather-img'>
-            something
+            <img src={currentConditions && `http://openweathermap.org/img/w/${currentConditions[0].icon}.png`} />
           </div>
           <div className='weather-temp-container'>
             <div> {currentDeg && currentDeg.deg} <span className='degree'> &deg; </span> </div>
@@ -49,6 +48,10 @@ class WeatherDisplay extends React.Component {
           </div>
         </div>
       </div>
+    )
+
+    const createWeeklyForecast = () => (
+      <></>
     )
 
     return (
