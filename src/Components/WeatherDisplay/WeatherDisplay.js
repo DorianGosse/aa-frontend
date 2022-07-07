@@ -1,5 +1,6 @@
 import React from 'react'
 import './WeatherDisplay.css'
+
 import { getWeatherData } from '../../Utils/fetchWeatherData'
 
 import Header from '../Header'
@@ -16,20 +17,26 @@ const testWeatherData = {
   temp: '19', conditions: 'sunny', 
 }
 
+
 class WeatherDisplay extends React.Component {
   constructor() {
     super()
     this.state = {
-      selectedCity: cities[0]
+      selectedCity: cities[0],
+      currentWeather: {}
     }
   }
 
   componentDidMount() {
-    getWeatherData(this.state.selectedCity)
+    const setCurrentWeather = weatherData => this.setState({ currentWeather: weatherData })
+    
+    getWeatherData(this.state.selectedCity, setCurrentWeather)
   }
 
   render() {
 
+    const currentDeg = this.state.currentWeather.wind
+    const currentConditions = this.state.currentWeather.weather
     const handleCityToggle = citySelected => {
       this.setState({ selectedCity: citySelected })
     }
@@ -37,14 +44,13 @@ class WeatherDisplay extends React.Component {
     const createTodaysWeather = currentWeatherData => (
       <div className='todays-weather'>
         Today
-        {/* {currentWeather} */}
         <div className='weather-display-continer'>
           <div className='weather-img'>
             something
           </div>
           <div className='weather-temp-container'>
-            <div> {currentWeatherData.temp} <span className='degree'> &deg; </span> </div>
-            <div> {currentWeatherData.conditions} </div>
+            <div> {currentDeg && currentDeg.deg} <span className='degree'> &deg; </span> </div>
+            <div> {currentConditions && currentConditions[0].main} </div>
           </div>
         </div>
       </div>
