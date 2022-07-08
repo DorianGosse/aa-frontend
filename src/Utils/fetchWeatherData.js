@@ -21,7 +21,7 @@ export const get4DayForcast = async (queryData, setForcastData) => {
     for (let i = 4; i < data.list.length; i+= 8) {
       dailyNoonWeather.push(data.list[i])
     }
-
+    console.log('data', dailyNoonWeather)
     setForcastData(dailyNoonWeather)
   }
   catch (e) {

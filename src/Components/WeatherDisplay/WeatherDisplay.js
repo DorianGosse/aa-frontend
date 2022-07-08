@@ -5,7 +5,7 @@ import { getWeatherData, get4DayForcast } from '../../Utils/fetchWeatherData'
 import { getDayOfWeek } from '../../Utils/dateCalculations'
 
 import Header from '../Header'
-
+import LoadingSpinner from '../Loading'
 
 
 const cities = [
@@ -20,23 +20,28 @@ class WeatherDisplay extends React.Component {
     this.state = {
       selectedCity: cities[0],
       currentWeather: {},
-      forecastData: []
+      forecastData: [],
+      loading: true
     }
   }
-
+  
   componentDidMount() {
-    const setCurrentWeather = weatherData => this.setState({ currentWeather: weatherData })
-    const setForecastData = weatherData => this.setState({ forecastData: weatherData })
-    getWeatherData(this.state.selectedCity, setCurrentWeather)
-    get4DayForcast(this.state.selectedCity, setForecastData)
+    getWeatherData(this.state.selectedCity, weatherData => this.setState({ currentWeather: weatherData }))
+    get4DayForcast(this.state.selectedCity, weatherData => this.setState({ forecastData: weatherData }))
+    this.setState({ loading: !this.state.loading })
   }
 
-  render() {
 
+  render() {
     const currentDeg = this.state.currentWeather.main
     const currentConditions = this.state.currentWeather.weather
+    
     const handleCityToggle = citySelected => {
-      this.setState({ selectedCity: citySelected })
+      this.setState({
+        selectedCity: citySelected,
+        currentWeather: getWeatherData(citySelected, weatherData => this.setState({ currentWeather: weatherData })),
+        forecastData: get4DayForcast(citySelected, weatherData => this.setState({ forecastData: weatherData }))
+      })
     }
 
     const createTodaysWeather = () => (
@@ -72,13 +77,19 @@ class WeatherDisplay extends React.Component {
       </div>
     )
 
-    console.log('this state', this.state)
-
     return (
       <div className='weather-display'>
-        <Header locations={cities} handleCityToggle={handleCityToggle}/>
-        {createTodaysWeather()}
-        {create4DayForecast()}
+        {this.state.loading
+        ? <>
+            <Header locations={cities} handleCityToggle={handleCityToggle}/>
+            <LoadingSpinner />
+          </> 
+        : <>
+            <Header locations={cities} handleCityToggle={handleCityToggle}/>
+            {createTodaysWeather()}
+            {create4DayForecast()}
+          </>
+        }
       </div>
     )
   }
