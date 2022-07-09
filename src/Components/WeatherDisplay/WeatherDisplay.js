@@ -26,8 +26,8 @@ class WeatherDisplay extends React.Component {
   }
   
   componentDidMount() {
-    getWeatherData(this.state.selectedCity, weatherData => this.setState({ currentWeather: weatherData }))
-    get4DayForcast(this.state.selectedCity, weatherData => this.setState({ forecastData: weatherData }))
+    getWeatherData(this.state.selectedCity, weatherData => this.setState({ currentWeather: weatherData }), isLoading => this.setState({ loading: isLoading }))
+    get4DayForcast(this.state.selectedCity, weatherData => this.setState({ forecastData: weatherData }), isLoading => this.setState({ loading: isLoading }))
     this.setState({ loading: !this.state.loading })
   }
 
@@ -39,8 +39,8 @@ class WeatherDisplay extends React.Component {
     const handleCityToggle = citySelected => {
       this.setState({
         selectedCity: citySelected,
-        currentWeather: getWeatherData(citySelected, weatherData => this.setState({ currentWeather: weatherData })),
-        forecastData: get4DayForcast(citySelected, weatherData => this.setState({ forecastData: weatherData }))
+        currentWeather: getWeatherData(citySelected, weatherData => this.setState({ currentWeather: weatherData }), isLoading => this.setState({ loading: isLoading })),
+        forecastData: get4DayForcast(citySelected, weatherData => this.setState({ forecastData: weatherData }), isLoading => this.setState({ loading: isLoading }))
       })
     }
 
@@ -49,7 +49,7 @@ class WeatherDisplay extends React.Component {
         Today
         <div className='weather-display-continer'>
           <div className='weather-img'>
-            <img src={currentConditions && `http://openweathermap.org/img/w/${currentConditions[0].icon}.png`} />
+            <img alt='conditions-img' src={currentConditions && `http://openweathermap.org/img/w/${currentConditions[0].icon}.png`} />
           </div>
           <div className='weather-temp-container'>
             <div> {currentDeg && currentDeg.temp.toFixed()} <span className='degree'> &deg; </span> </div>
@@ -63,7 +63,7 @@ class WeatherDisplay extends React.Component {
       <div className='flex-container-column'>
         <div> {getDayOfWeek(daysInFuture)} </div>
         <div>
-          {this.state.forecastData.length && <img src={`http://openweathermap.org/img/w/${this.state.forecastData[daysInFuture -1].weather[0].icon}.png`} />} </div>
+          {this.state.forecastData.length && <img alt='conditions-img' src={`http://openweathermap.org/img/w/${this.state.forecastData[daysInFuture -1].weather[0].icon}.png`} />} </div>
         <div> {this.state.forecastData.length && this.state.forecastData[daysInFuture - 1].main.temp.toFixed()} &deg; </div>
       </div>
     )
