@@ -6,7 +6,6 @@
 }
 
 .weather-temp-container {
-  color: red;
   display: flex;
   flex-direction: column;
   text-align: left;

@@ -1,3 +1,4 @@
+
 .weather-header {
   display: flex;
   flex-direction: row;
@@ -9,8 +10,9 @@
 .city-toggle {
   padding-right: 1.5rem;
   padding-left: 1.5rem;
-  font-weight: 100;
+  font-weight: 300;
   font-size: 150%;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .city-toggle:hover {
@@ -20,9 +22,8 @@
 .selected-city {
   color: #5fb0e8;
   font-size: 150%;
-  font-weight: 700;
-  font-family:'Courier New', Courier, monospace ;
+  font-weight: 600;
+  font-family:'Work Sans', sans-serif;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
-
 }
