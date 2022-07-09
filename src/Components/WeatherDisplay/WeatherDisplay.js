@@ -46,14 +46,16 @@ class WeatherDisplay extends React.Component {
 
     const createTodaysWeather = () => (
       <div className='todays-weather'>
-        Today
+        <div className='text-container-300'> Today </div>
         <div className='weather-display-continer'>
           <div className='weather-img'>
             <img alt='conditions-img' src={currentConditions && `http://openweathermap.org/img/w/${currentConditions[0].icon}.png`} />
           </div>
           <div className='weather-temp-container'>
-            <div> {currentDeg && currentDeg.temp.toFixed()} <span className='degree'> &deg; </span> </div>
-            <div> {currentConditions && currentConditions[0].main} </div>
+            <div className='todays-temp'>
+                <span>{currentDeg && currentDeg.temp.toFixed()} &deg; </span>
+            </div>
+            <div className='todays-conditions'> {currentConditions && currentConditions[0].main} </div>
           </div>
         </div>
       </div>
