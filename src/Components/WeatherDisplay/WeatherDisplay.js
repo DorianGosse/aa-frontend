@@ -46,16 +46,16 @@ class WeatherDisplay extends React.Component {
 
     const createTodaysWeather = () => (
       <div className='todays-weather'>
-        <div className='text-container-300'> Today </div>
+        <div className='text-container-300 font-xl'> Today </div>
         <div className='weather-display-continer'>
           <div className='weather-img'>
             <img alt='conditions-img' src={currentConditions && `http://openweathermap.org/img/w/${currentConditions[0].icon}.png`} />
           </div>
           <div className='weather-temp-container'>
             <div className='todays-temp'>
-                <span>{currentDeg && currentDeg.temp.toFixed()} &deg; </span>
+                <div>{currentDeg && currentDeg.temp.toFixed()} &deg; </div>
             </div>
-            <div className='todays-conditions'> {currentConditions && currentConditions[0].main} </div>
+            <div className='todays-conditions font-xl'> {currentConditions && currentConditions[0].main} </div>
           </div>
         </div>
       </div>
@@ -63,10 +63,10 @@ class WeatherDisplay extends React.Component {
 
     const getForecastData = daysInFuture => (
       <div className='flex-container-column'>
-        <div> {getDayOfWeek(daysInFuture)} </div>
+        <div className='forecast-day'> {getDayOfWeek(daysInFuture)} </div>
         <div>
           {this.state.forecastData.length && <img alt='conditions-img' src={`http://openweathermap.org/img/w/${this.state.forecastData[daysInFuture -1].weather[0].icon}.png`} />} </div>
-        <div> {this.state.forecastData.length && this.state.forecastData[daysInFuture - 1].main.temp.toFixed()} &deg; </div>
+        <div className='forecast-temp'> {this.state.forecastData.length && this.state.forecastData[daysInFuture - 1].main.temp.toFixed()} &deg; </div>
       </div>
     )
 

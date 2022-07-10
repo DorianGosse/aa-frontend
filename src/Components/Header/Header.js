@@ -20,7 +20,7 @@ class Header extends React.Component {
       <div className='weather-header'>
         {this.state.locations.map(location => (
           <div
-            className={this.state.selectedCity === location ? 'selected-city' : 'city-toggle'}
+            className={this.state.selectedCity === location ? 'selected-city font-xxl' : 'city-toggle font-xxl'}
             key={`${location.name}-${location.lat}-${location.lng}`}
             onClick={() => handleCityOnClick(location)}>
             {location.name}
