@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Real Time Weather
+
+Just a fun little project using react class components to create a weather app that displays real time and forcast weather for three cities (hard coded cities) using openWeatherMap api.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
